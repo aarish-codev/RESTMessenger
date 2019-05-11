@@ -12,7 +12,7 @@ public class MessageService {
 	private Map<Long, Message> messages = DatabaseClass.getMessages();
 	
 	public MessageService() {
-		messages.put(1L, new Message(1, "Hi", "Chuck)"));	
+		messages.put(1L, new Message(1, "Hi", "Chuck"));	
 	}
 	
 	public List<Message> getAllMessages(){
