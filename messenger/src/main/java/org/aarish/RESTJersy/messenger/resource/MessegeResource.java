@@ -3,6 +3,7 @@ package org.aarish.RESTJersy.messenger.resource;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -47,6 +48,13 @@ public class MessegeResource {
 	public Message udpateMessage(@PathParam("messageId") long id, Message message) {
 		message.setId(id);
 		return service.updateMessage(message);
+	}
+	
+	@DELETE
+	@Path("/{messageId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void deleteMessage(@PathParam("messageId") long id) {
+		service.removeMessage(id);
 	}
 	
 }
