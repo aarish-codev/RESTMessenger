@@ -1,6 +1,8 @@
 package org.aarish.RESTJersy.messenger.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +14,8 @@ public class MessageService {
 	private Map<Long, Message> messages = DatabaseClass.getMessages();
 	
 	public MessageService() {
-		messages.put(1L, new Message(1, "Hi", "Chuck"));	
+		messages.put(1L, new Message(1, "Hi", "Chuck"));
+		messages.get(1L).setCreated(new Date(2016, 01, 26));
 	}
 	
 	public List<Message> getAllMessages(){
@@ -39,6 +42,17 @@ public class MessageService {
 	
 	public Message removeMessage(Long id) {
 		return messages.remove(id);
+	}
+
+	public List<Message> getAllMessagesForYear(int year) {
+		List<Message> messagesForYear = new ArrayList<>();
+		Calendar cal = Calendar.getInstance();
+		for(Message msg: messages.values()) {
+			cal.setTime(msg.getCreated());
+			if(year == cal.get(Calendar.YEAR))
+				messagesForYear.add(msg);
+		}
+		return messagesForYear;
 	}
 	
 
