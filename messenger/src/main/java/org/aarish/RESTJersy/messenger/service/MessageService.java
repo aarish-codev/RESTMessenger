@@ -55,5 +55,12 @@ public class MessageService {
 		return messagesForYear;
 	}
 	
+	public List<Message> getAllMessagesPaginated(int start, int size){
+		ArrayList<Message> list = new ArrayList<>(messages.values());
+		if(size>messages.size())
+			return list;
+		return list.subList(start, start+size);
+	}
+	
 
 }

@@ -23,9 +23,13 @@ public class MessegeResource {
 	@GET
 //	@Produces(MediaType.APPLICATION_XML)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Message> getMessages(@QueryParam ("year") int year) {
+	public List<Message> getMessages(@QueryParam ("year") int year,
+									 @QueryParam("start") int start,
+									 @QueryParam("size") int size) {
 		if(year>0)
 			return service.getAllMessagesForYear(year);
+		if(start>0 && size>0)
+			return service.getAllMessagesPaginated(start, size);
 		
 		return service.getAllMessages();
 	}
