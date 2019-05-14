@@ -65,4 +65,10 @@ public class MessegeResource {
 		service.removeMessage(id);
 	}
 	
+//	This is a subresource
+	@Path("/{messageId}/comments")
+	public CommentResource getCommentResource() {
+		return new CommentResource();
+	}
+	
 }
