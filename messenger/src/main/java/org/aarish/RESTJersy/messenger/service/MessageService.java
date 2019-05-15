@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.aarish.RESTJersy.messenger.dao.DatabaseClass;
+import org.aarish.RESTJersy.messenger.exception.DataNotFoundException;
 import org.aarish.RESTJersy.messenger.model.Message;
 
 public class MessageService {
@@ -23,6 +24,9 @@ public class MessageService {
 	}
 	
 	public Message getMessage(Long id) {
+		Message msg = messages.get(id);
+		if(msg == null)
+			throw new DataNotFoundException("Message with id: "+id +" does not exists");
 		return messages.get(id);
 	}
 	
